@@ -4,8 +4,8 @@ from .models import NewUser
 @admin.register(NewUser)
 class UserAdmin(admin.ModelAdmin):
     # Read only fields
-    list_display = ('email', 'user_name', 'first_name', 'is_staff', 'is_superuser', 'is_verified', 'is_premium', 'is_logged_in')
-    search_fields = ('email', 'user_name', 'first_name', 'last_name')
+    list_display = ('email', 'username', 'is_staff', 'is_superuser', 'is_verified', 'is_premium', 'is_logged_in', 'is_deleted')
+    search_fields = ('email', 'username', 'first_name', 'last_name')
     readonly_fields = ('id', 'created_at', 'updated_at')
 
     filter_horizontal = ()
@@ -15,7 +15,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, 
             {'fields': 
-                ('email', 'password', 'user_name', 'first_name', 'last_name',)
+                ('email', 'password', 'username', 'first_name', 'last_name',)
             }
         ),
         ('Roles', 
