@@ -2,6 +2,7 @@ from rest_framework import status, serializers
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import AllowAny
+from django.contrib.auth import get_user_model
 from .models import NewUser
 from .serializers import UserSerializer
 
@@ -59,12 +60,30 @@ class UserRegistrationView(CreateAPIView):
         try: 
             serializer = self.get_serializer(data=request.data, context={'request': request})
             serializer.is_valid(raise_exception=True)
-            serializer.save()
+
+            is_superuser = request.data.get('is_superuser', False)
+            is_staff = request.data.get('is_staff', False)
+            user = serializer.save(is_staff=is_staff, is_superuser=is_superuser)
+
+            user.set_password(request.data['password'])
+
+            if is_superuser or is_staff:
+                user.is_verified = True
+                user.is_premium = True
+                user.is_active = True
+                user.is_staff = True
+                user.is_superuser = True
+            else:
+                user.is_active = True
+
+            user.save()
+
+            message = 'Admin created successfully.' if is_superuser or is_staff else 'User created successfully.'
 
             return Response({
                 'user': serializer.data,
                 'status': 'success',
-                'message': 'User created successfully.',
+                'message': message,
             }, status=status.HTTP_201_CREATED)
         except serializers.ValidationError as e:
             errors = dict(e.detail)

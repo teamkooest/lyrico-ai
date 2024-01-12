@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, username, first_name, password, **other_fields):
-      
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
@@ -69,5 +68,5 @@ class NewUser(AbstractUser, PermissionsMixin):
         return f'{self.username} ({self.email})'
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'All'
+        verbose_name_plural = 'All'
