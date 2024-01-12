@@ -1,8 +1,8 @@
 function App() {
   return (
-    <>
-      <div className="text-3xl">Hello</div>
-    </>
+    <div className="w-full h-screen p-4 bg-slate-950">
+
+    </div>
   )
 }
 
