@@ -1,5 +1,3 @@
-from typing import Any
-from django.core.handlers.wsgi import WSGIRequest
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
