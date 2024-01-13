@@ -1,7 +1,10 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
@@ -302,6 +305,7 @@ export default {
       DEFAULT: '1',
     },
     fontFamily: {
+      'dm-sans': ['"DM Sans"', 'system-ui', 'sans-serif'],
       sans: [
         'ui-sans-serif',
         'system-ui',
