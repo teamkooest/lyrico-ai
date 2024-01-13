@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "component": "Auth"
+    },
+    {
+      "path": "/chat",
+      "component": "App"
+    }
+  ]
+}
