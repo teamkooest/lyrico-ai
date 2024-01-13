@@ -1,12 +1,9 @@
 from django.db import models
 from apps.api.users.models import NewUser
 
-"""
-    The `Chat` class represents a chat message with a user, message content, and timestamps, and can be
-    ordered by creation time.
-"""
 class Chat(models.Model):
     user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    prompt = models.TextField(blank=True, null=True)
     message = models.TextField()
     is_user = models.BooleanField(default=False)
 
@@ -16,9 +13,9 @@ class Chat(models.Model):
 
     def __str__(self):
         if self.is_user:
-            return f'{self.user} - {self.message}'
+            return f'{self.user} - User Prompt: {self.prompt}'
         else:
-            return f'Vocale AI - {self.message}'
+            return f'Vocale AI - Generated Lyrics: {self.message}'
 
     class Meta:
         ordering = ['-created_at']
