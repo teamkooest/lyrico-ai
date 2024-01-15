@@ -5,7 +5,7 @@ export default function Logo() {
     <Link
       to="/"
     >
-      <h1 className="text-4xl font-medium">vocale ai.</h1>
+      <h1 className="text-4xl font-medium text-indigo-500">vocale ai.</h1>
     </Link>
   )
 }
